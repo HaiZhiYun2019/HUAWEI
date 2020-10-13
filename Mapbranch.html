@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=hdpRUhqmzt19Zz2HVfU5vXXNAgqUqTCH"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var data = [
+     {name: '阿尔及利亚', value: 100},
+     {name: '埃塞俄比亚', value: 100},
+     {name: '尼日利亚', value: 100},
+     {name: '约翰内斯堡', value: 100},
+     {name: '澳大利亚', value: 100},
+     {name: '孟加拉国', value: 100},
+     {name: '北京', value: 100},
+     {name: '长春', value: 100},
+     {name: '长沙', value: 100},
+     {name: '成都', value: 100},
+     {name: '重庆', value: 100},
+     {name: '福州', value: 100},
+     {name: '广州', value: 100},
+     {name: '贵阳', value: 100},
+     {name: '哈尔滨', value: 100},
+     {name: '海口', value: 100},
+     {name: '杭州', value: 100},
+     {name: '合肥', value: 100},
+     {name: '呼和浩特', value: 100},
+     {name: '济南', value: 100},
+     {name: '昆明', value: 100},
+     {name: '兰州', value: 100},
+     {name: '南昌', value: 100},
+     {name: '南京', value: 100},
+     {name: '南宁', value: 100},
+     {name: '上海', value: 100},
+     {name: '沈阳', value: 100},
+     {name: '深圳', value: 100},
+     {name: '石家庄', value: 100},
+     {name: '太原', value: 100},
+     {name: '天津', value: 100},
+     {name: '武汉', value: 100},
+     {name: '乌鲁木齐', value: 100},
+     {name: '西安', value: 100},
+     {name: '郑州', value: 100},
+     {name: '香港', value: 100},
+     {name: '古尔冈', value: 100},
+     {name: '印度尼西亚', value: 100},
+     {name: '东京', value: 100},
+     {name: '阿拉木图', value: 100},
+     {name: '阿斯塔纳', value: 100},
+     {name: '马来西亚', value: 100},
+     {name: '新西兰', value: 100},
+     {name: '伊斯兰堡', value: 100},
+     {name: '菲律宾', value: 100},
+     {name: '新加坡', value: 100},
+     {name: '泰国', value: 100},
+     {name: '维也纳', value: 100},
+     {name: '保加利亚', value: 100},
+     {name: '捷克', value: 100},
+     {name: '丹麦', value: 100},
+     {name: '爱沙尼亚', value: 100},
+     {name: '赫尔辛基', value: 100},
+     {name: '法国', value: 100},
+     {name: '杜塞尔多夫', value: 100},
+     {name: '希腊', value: 100},
+     {name: '匈牙利', value: 100},
+     {name: '爱尔兰', value: 100},
+     {name: '罗马', value: 100},
+     {name: '米兰', value: 100},
+     {name: '拉脱维亚', value: 100},
+     {name: '立陶宛', value: 100},
+     {name: '卢森堡', value: 100},
+     {name: '荷兰', value: 100},
+     {name: '挪威', value: 100},
+     {name: '波兰', value: 100},
+     {name: '罗马尼亚', value: 100},
+     {name: '莫斯科', value: 100},
+     {name: '西班牙', value: 100},
+     {name: '瑞典', value: 100},
+     {name: '基辅', value: 100},
+     {name: '英国', value: 100},
+     {name: '阿根廷.布宜诺斯艾利斯', value: 100},
+     {name: '巴西利亚', value: 100},
+     {name: '圣保罗', value: 100},
+     {name: '利马', value: 100},
+     {name: '圣地亚哥', value: 100},
+     {name: '哥伦比亚', value: 100},
+     {name: '厄瓜多尔', value: 100},
+     {name: '墨西哥', value: 100},
+     {name: '秘鲁', value: 100},
+     {name: '委内瑞拉', value: 100},
+     {name: '巴林', value: 100},
+     {name: '伊拉克', value: 100},
+     {name: '科威特', value: 100},
+     {name: '马斯喀特', value: 100},
+     {name: '多哈', value: 100},
+     {name: '利雅得', value: 100},
+     {name: '安卡拉', value: 100},
+     {name: '伊斯坦布尔', value: 100},
+     {name: '迪拜', value: 100},
+     {name: '加拿大', value: 100},
+     {name: '美国', value: 100}
+]
+
+var geoCoordMap = {
+    '阿尔及利亚':[2.289592,28.220447],
+    '埃塞俄比亚':[39.56288,8.637087],
+    '尼日利亚':[8.058891,9.592284],
+    '约翰内斯堡':[28.034657,-26.166494],
+    '澳大利亚':[134.136758,-24.103269],
+    '孟加拉国':[90.217303,24.267635],
+    '北京':[116.401314,39.918229],
+    '长春':[125.324282,43.82466],
+    '长沙':[112.94432,28.236672],
+    '成都':[104.07217,30.582725],
+    '重庆':[106.552688,29.566734],
+    '福州':[119.300595,26.0864],
+    '广州':[113.26453,23.141982],
+    '贵阳':[106.636005,26.655132],
+    '哈尔滨':[126.532412,45.817869],
+    '海口':[110.202117,20.053471],
+    '杭州':[120.208611,30.256326],
+    '合肥':[117.228842,31.829769],
+    '呼和浩特':[111.745163,40.85126],
+    '济南':[117.124099,36.658638],
+    '昆明':[102.841743,24.888632],
+    '兰州':[103.843399,36.070269],
+    '南昌':[115.86631,28.69275],
+    '南京':[118.797248,32.074199],
+    '南宁':[108.36598,22.823406],
+    '上海':[121.476516,31.23914],
+    '沈阳':[123.46937,41.689217],
+    '深圳':[114.059378,22.547655],
+    '石家庄':[114.519804,38.051722],
+    '太原':[112.552372,37.877674],
+    '天津':[117.201767,39.095807],
+    '武汉':[114.31906,30.600705],
+    '乌鲁木齐':[87.618114,43.836798],
+    '西安':[108.952789,34.355614],
+    '郑州':[113.63544,34.757948],
+    '香港':[114.166578,22.284757],
+    '古尔冈':[76.964819,28.384251],
+    '印度尼西亚':[119.891683,-4.313256],
+    '东京':[139.765462,35.687478],
+    '阿拉木图':[76.870446,43.249631],
+    '阿斯塔纳':[70.639516,50.134769],
+    '马来西亚':[102.100231,5.197247],
+    '新西兰':[170.15013,-44.200266],
+    '伊斯兰堡':[73.063408,33.733672],
+    '菲律宾':[122.063844,12.479235],
+    '新加坡':[103.849732,1.359316],
+    '泰国':[101.060293,16.458494],
+    '维也纳':[16.372669,48.213749],
+    '保加利亚':[25.497903,42.754436],
+    '捷克':[15.470662,49.832184],
+    '丹麦':[9.520182,56.277195],
+    '爱沙尼亚':[25.832215,58.694444],
+    '赫尔辛基':[24.938224,60.178292],
+    '法国':[1.108383,47.536934],
+    '杜塞尔多夫':[6.775181,51.236583],
+    '希腊':[21.83696,39.08922],
+    '匈牙利':[19.680777,46.914513],
+    '爱尔兰':[-8.114382,53.179529],
+    '罗马':[12.502689,41.907722],
+    '米兰':[9.190557,45.471282],
+    '拉脱维亚':[25.962308,57.00232],
+    '立陶宛':[23.696152,55.202334],
+    '卢森堡':[6.19805,49.630297],
+    '荷兰':[5.345883,52.150673],
+    '挪威':[7.60828,61.086959],
+    '波兰':[18.731114,52.951421],
+    '罗马尼亚':[25.01994,45.987061],
+    '莫斯科':[37.640594,55.782402],
+    '西班牙':[-3.28983,39.5312],
+    '瑞典':[16.657096,63.539209],
+    '基辅':[30.570831,50.493945],
+    '英国':[-2.293299,54.725853],
+    '阿根廷.布宜诺斯艾利斯':[-58.341027,-34.552563],
+    '巴西利亚':[-47.856498,-15.728038],
+    '圣保罗':[-46.583579,-23.521099],
+    '利马':[-76.961403,-11.978171],
+    '圣地亚哥':[-70.643682,-33.434189],
+    '哥伦比亚':[-73.043308,3.518177],
+    '厄瓜多尔':[-78.442621,-1.34445],
+    '墨西哥':[-104.2133,26.122195],
+    '秘鲁':[-75.38523,-10.3595],
+    '委内瑞拉':[-66.179286,7.18772],
+    '巴林':[50.557987,26.07397],
+    '伊拉克':[42.974889,33.087686],
+    '科威特':[47.480273,29.384797],
+    '马斯喀特':[58.643865,23.65178],
+    '多哈':[51.528704,25.351455],
+    '利雅得':[46.728871,24.742558],
+    '安卡拉':[32.853705,39.949739],
+    '伊斯坦布尔':[28.959674,41.036105],
+    '迪拜':[55.294745,25.290953],
+    '加拿大':[-106.362581,56.162781],
+    '美国':[-101.396024,39.817657]
+};
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+            });
+        }
+    }
+    return res;
+};
+
+option = {
+    title: {
+        text: '华为全球分支机构分布图',
+        subtext: 'data from huawei.com',
+        sublink: 'https://e.huawei.com/cn/branch-office-query',
+        left: 'center'
+    },
+    tooltip : {
+        trigger: 'item'
+    },
+    bmap: {
+        center: [104.114129, 37.550339],
+        zoom: 5,
+        roam: true,
+        mapStyle: {
+            styleJson: [{
+                'featureType': 'water',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'land',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#f3f3f3'
+                }
+            }, {
+                'featureType': 'railway',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'highway',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#fdfdfd'
+                }
+            }, {
+                'featureType': 'highway',
+                'elementType': 'labels',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'arterial',
+                'elementType': 'geometry',
+                'stylers': {
+                    'color': '#fefefe'
+                }
+            }, {
+                'featureType': 'arterial',
+                'elementType': 'geometry.fill',
+                'stylers': {
+                    'color': '#fefefe'
+                }
+            }, {
+                'featureType': 'poi',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'green',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'subway',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'manmade',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'local',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'arterial',
+                'elementType': 'labels',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'boundary',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#fefefe'
+                }
+            }, {
+                'featureType': 'building',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'label',
+                'elementType': 'labels.text.fill',
+                'stylers': {
+                    'color': '#999999'
+                }
+            }]
+        }
+    },
+    series : [
+        {
+            // name: 'Top 5',
+            type: 'effectScatter',
+            coordinateSystem: 'bmap',
+            data: convertData(data),
+            symbolSize: function (val) {
+                return val[2] / 10;
+            },
+            encode: {
+                value: 2
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            label: {
+                formatter: '{b}',
+                position: 'right',
+                show: false
+            },
+            itemStyle: {
+                color: '#9B21A1',
+                shadowBlur: 2,
+                shadowColor: '#333'
+            },
+            zlevel: 1
+        }
+    ]
+};
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
